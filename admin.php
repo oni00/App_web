@@ -12,9 +12,10 @@ $mdphash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
 
 
 $insert = "insert into utilisateur (nom, prenom, email, mot_de_passe, role) values (?,?,?,?,?)";
-$req = $connect->prepare($insert);
+$req = $connexion->prepare($insert);
 $req->bind_param("sssss", $nom, $prenom, $email, $mdphash, $role );
 $req->execute(); 
+
 
 
 
