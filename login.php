@@ -10,16 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     }
 
 
-    require "db.php";
+    require "../config/db.php";
     
     $selectUser = "select * from utilisateur where email = ?";
-    $stmt = $connect->prepare($selectUser);
+    $stmt = $connexion->prepare($selectUser);
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
     $userInfo= $result->fetch_assoc();
 
-    if (password_verify($password_hash, $userInfo["passw"])){
+    if (password_verify($password_hash, $userInfo["password_hash"])){
 
         session_start();
         $_SESSION["user_id"]=$userInfo["id"];
@@ -40,6 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     
     
 ?>
+    
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,8 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     <input type="email" name="email">
     <label for="mot de passe">mot de passe</label>
     <input type="password" name="mot_de_passe">
-    <button type="submit" name="login">connectez-vous</button>
-     <a href="inscription.php">Pas encore inscrit ?</a>
+    <button type="submit" name="login">login</button>
+  
     
     </form>
 
