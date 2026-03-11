@@ -1,5 +1,6 @@
 
-<?phpif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     print_r($_POST);
     $email = $_POST["email"];
     $mot_de_passe = $_POST["mot_de_passe"];
@@ -40,4 +41,5 @@
     </form>
 
 </body>
+
 </html>
